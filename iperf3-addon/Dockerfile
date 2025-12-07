@@ -3,7 +3,9 @@ FROM alpine:latest
 # Add iperf3 and a non-root user
 RUN apk add --no-cache iperf3 && \
     addgroup -S iperf && \
-    adduser -S -G iperf iperf
+    adduser -S -G iperf iperf && \
+    rm -rf /var/cache/apk/* && \
+    rm -fv /sbin/apk
 
 # Copy run script
 COPY run.sh /
